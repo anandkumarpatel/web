@@ -7,7 +7,6 @@ services:
   api:
     build: 
       context: git@github.com:DockerCon2017/api.git
-    env_file: .env
     ports:
       - "3000:3000"
     links:
@@ -16,6 +15,7 @@ services:
       - MONGODB_HOST=db
   web:
     build: .
+    env_file: .env
     ports:
       - "80:80"
     links:
