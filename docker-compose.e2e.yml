@@ -4,6 +4,10 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+  chrome:
+    image: selenium/standalone-chrome
+    ports:
+      - "4444:4444"
   api:
     build: 
       context: git@github.com:DockerCon2017/api.git
@@ -19,11 +23,13 @@ services:
       - "80:80"
     links:
       - "api"
+    environment:
+      - API_HOST=api:3000
+  e2e:
+    build: 
+      context: git@github.com:DockerCon2017/e2e.git
+    links:
+      - "web"
       - "chrome"
-    env_file: .env
-    command: date
-  chrome:
-    image: selenium/standalone-chrome
-    ports:
-      - "4444:4444"
-
+    environment:
+      - WEB_URL=web
