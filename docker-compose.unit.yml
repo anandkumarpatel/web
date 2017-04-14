@@ -6,7 +6,7 @@ services:
       - "27017:27017"
   api:
     build: 
-      context: git@github.com:DockerCon2017/api
+      context: git@github.com:DockerCon2017/api.git
       dockerfile: Dockerfile.test
     ports:
       - "3000:3000"
